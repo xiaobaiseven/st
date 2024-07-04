@@ -8,15 +8,15 @@
 // static char *font = "Liberation
 // Mono:pixelsize=15:antialias=true:autohint=true";
 static char *font =
-    "LXGW WenKai Mono:style=Bold:pixelsize=16:antialias=true:autohint=true";
+    "SF Mono:style=Regular:pixelsize=15:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
     /*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true",
      */
     //	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true",
-    "LXGW WenKai Mono:style=Bold:pixelsize=16:antialias=true:autohint=true",
-    "Fira Code Nerd Font Mono:pixelsize=16:antialias=true:autohint=true",
-    "Noto Color Emoji:pixelsize=16:antialias=true:autohint=true",
+    "PingFang SC Light:style=Bold:pixelsize=15:antialias=true:autohint=true",
+    "Fira Code Nerd Font Mono:pixelsize=15:antialias=true:autohint=true",
+    "Noto Color Emoji:pixelsize=15:antialias=true:autohint=true",
 
 };
 
@@ -68,7 +68,7 @@ int allowwindowops = 0;
  * low minlatency will tear/flicker more, as it can "detect" idle too early.
  */
 static double minlatency = 8;
-static double maxlatency = 33;
+static double maxlatency = 2;
 
 /*
  * blinking timeout (set to 0 to disable blinking) for the terminal blinking
@@ -120,7 +120,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.75;
+float alpha = 0.7;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
@@ -270,10 +270,10 @@ static Shortcut shortcuts[] = {
     //{ShiftMask, XK_Insert, selpaste, {.i = 0}},
     {TERMMOD, XK_Num_Lock, numlock, {.i = 0}},
     {MODKEY, XK_l, copyurl, {.i = 0}},
-    {ShiftMask, XK_Page_Up, kscrollup, {.i = 1}},
-    {ShiftMask, XK_Page_Down, kscrolldown, {.i = 1}},
-    {MODKEY, XK_Page_Up, kscrollup, {.i = -1}},
-    {MODKEY, XK_Page_Down, kscrolldown, {.i = -1}},
+    {ShiftMask, XK_Up, kscrollup, {.i = 1}},
+    {ShiftMask, XK_Down, kscrolldown, {.i = 1}},
+    {MODKEY, XK_Up, kscrollup, {.i = -1}},
+    {MODKEY, XK_Down, kscrolldown, {.i = -1}},
 };
 
 /*
