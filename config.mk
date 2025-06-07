@@ -4,7 +4,7 @@ VERSION = 0.9.2
 # Customize below to fit your system
 
 # paths
-PREFIX = /usr/local
+PREFIX = /usr
 APPPREFIX = $(PREFIX)/share/applications
 MANPREFIX = $(PREFIX)/share/man
 ICONPREFIX = $(PREFIX)/share/pixmaps
