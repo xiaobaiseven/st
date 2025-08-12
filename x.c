@@ -1131,7 +1131,7 @@ int xicdestroy(XIC xim, XPointer client, XPointer call) {
 
 void xinit(int cols, int rows) {
   XGCValues gcvalues;
-  Window parent;
+  Window parent,root;
   pid_t thispid = getpid();
   XColor xmousefg, xmousebg;
   Pixmap blankpm;
@@ -1142,9 +1142,14 @@ void xinit(int cols, int rows) {
     die("can't open display\n");
   xw.scr = XDefaultScreen(xw.dpy);
 
+  root = XRootWindow(xw.dpy, xw.scr);
+
   if (!(opt_embed && (parent = strtol(opt_embed, NULL, 0)))) {
-    parent = XRootWindow(xw.dpy, xw.scr);
-    xw.depth = 32;
+	parent = root;
+	xw.win = XCreateWindow(xw.dpy, root, xw.l, xw.t,
+			win.w, win.h, 0, XDefaultDepth(xw.dpy, xw.scr), InputOutput,
+ 			xw.vis, CWBackPixel | CWBorderPixel | CWBitGravity
+ 			| CWEventMask | CWColormap, &xw.attrs);
   } else {
     XGetWindowAttributes(xw.dpy, parent, &attr);
     xw.depth = attr.depth;
@@ -1190,11 +1195,12 @@ void xinit(int cols, int rows) {
                          CWBackPixel | CWBorderPixel | CWBitGravity |
                              CWEventMask | CWColormap,
                          &xw.attrs);
-
+  if (parent != root)
+	XReparentWindow(xw.dpy, xw.win, parent, xw.l, xw.t);
   memset(&gcvalues, 0, sizeof(gcvalues));
   gcvalues.graphics_exposures = False;
   xw.buf = XCreatePixmap(xw.dpy, xw.win, win.w, win.h, xw.depth);
-  dc.gc = XCreateGC(xw.dpy, xw.buf, GCGraphicsExposures, &gcvalues);
+  dc.gc = XCreateGC(xw.dpy, xw.win, GCGraphicsExposures, &gcvalues);
   XSetForeground(xw.dpy, dc.gc, dc.col[defaultbg].pixel);
   XFillRectangle(xw.dpy, xw.buf, dc.gc, 0, 0, win.w, win.h);
 

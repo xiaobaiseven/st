@@ -5,16 +5,13 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-// static char *font = "Liberation
-// Mono:pixelsize=15:antialias=true:autohint=true";
-static char *font =
-    "SF Mono:style=Regular:pixelsize=15:antialias=true:autohint=true";
+static char *font = "Liberation Mono:pixelsize=15:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
     /*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true",
      */
     //	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true",
-    "PingFang SC Light:style=Bold:pixelsize=15:antialias=true:autohint=true",
+    "MiSans:style=Bold:pixelsize=15:antialias=true:autohint=true",
     "Fira Code Nerd Font Mono:pixelsize=15:antialias=true:autohint=true",
     "Noto Color Emoji:pixelsize=15:antialias=true:autohint=true",
 
@@ -120,7 +117,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.7;
+float alpha = 0.9;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
@@ -254,7 +251,7 @@ static char *copyoutput[] = {"/bin/sh", "-c", "st-copyout", "externalpipe",
 
 static Shortcut shortcuts[] = {
     /* mask                 keysym          function        argument */
-    {Mod1Mask | ControlMask, XK_l, externalpipe, {.v = openurlcmd}},
+    {MODKEY, XK_b, externalpipe, {.v = openurlcmd}},
     {Mod1Mask, XK_y, externalpipe, {.v = copyurlcmd}},
     {Mod1Mask, XK_o, externalpipe, {.v = copyoutput}},
     {XK_ANY_MOD, XK_Break, sendbreak, {.i = 0}},
@@ -270,10 +267,10 @@ static Shortcut shortcuts[] = {
     //{ShiftMask, XK_Insert, selpaste, {.i = 0}},
     {TERMMOD, XK_Num_Lock, numlock, {.i = 0}},
     {MODKEY, XK_l, copyurl, {.i = 0}},
-    {ShiftMask, XK_Up, kscrollup, {.i = 1}},
-    {ShiftMask, XK_Down, kscrolldown, {.i = 1}},
-    {MODKEY, XK_Up, kscrollup, {.i = -1}},
-    {MODKEY, XK_Down, kscrolldown, {.i = -1}},
+    {TERMMOD, XK_K, kscrollup, {.i = -1}},
+    {TERMMOD, XK_J, kscrolldown, {.i = -1}},
+    {MODKEY, XK_k, kscrollup, {.i = 1}},
+    {MODKEY, XK_j, kscrolldown, {.i = 1}},
 };
 
 /*
