@@ -25,7 +25,7 @@ LIBS = -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft -lgd \
 
 # flags
 STCPPFLAGS = -DVERSION=\"$(VERSION)\" -DICON=\"$(ICONPREFIX)/$(ICONNAME)\" -D_XOPEN_SOURCE=600
-STCFLAGS = $(INCS) $(STCPPFLAGS) $(CPPFLAGS) $(CFLAGS) -pedantic -Wall -Wno-deprecated-declarations -march=skylake -pipe -Os -finline-functions -fno-semantic-interposition -fomit-frame-pointer -fopenmp -flto
+STCFLAGS = $(INCS) $(STCPPFLAGS) $(CPPFLAGS) $(CFLAGS) -pedantic -Wno-deprecated-declarations -march=skylake -pipe -Os -finline-functions -fno-semantic-interposition -fomit-frame-pointer -fopenmp -flto
 STLDFLAGS = $(LIBS) $(LDFLAGS)
 
 # OpenBSD:
